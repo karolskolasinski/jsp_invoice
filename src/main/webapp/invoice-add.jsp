@@ -20,27 +20,22 @@
 <div class="container">
     <div class="row">
         <div class="col-sm">
-            <form action="${requestScope.studentId==null ? '/student-add' : '/student-edit'}" method="post">
-                <input type="hidden" name="student_id" value="${requestScope.studentId}">
+            <form action="${requestScope.studentId==null ? '/invoice-add' : '/invoice-edit'}" method="post">
+                <input type="hidden" name="invoice_id" value="${requestScope.invoiceId}">
                 <div class="form-group">
-                    <label>Imię</label>
-                    <input type="text" name="student_name" class="form-control" placeholder="Wprowadź imię"
-                           value="${requestScope.studentName}">
+                    <label>Imię klienta</label>
+                    <input type="text" name="clientName" class="form-control" placeholder="Wprowadź imię"
+                           value="${requestScope.clientName}">
                 </div>
                 <div class="form-group">
-                    <label>Nazwisko</label>
-                    <input type="text" name="student_last_name" class="form-control" placeholder="Wprowadź nazwisko"
-                           value="${requestScope.studentSurname}">
+                    <label>NIP</label>
+                    <input type="text" name="clientNIP" class="form-control" placeholder="Wprowadź NIP" maxlength="10"
+                           value="${requestScope.clientNIP}">
                 </div>
                 <div class="form-group">
-                    <label>Wiek</label>
-                    <input type="number" name="student_age" min="1" max="99" class="form-control"
-                           placeholder="Wprowadź wiek" value="${requestScope.studentAge}">
-                </div>
-                <div class="form-group form-check">
-                    <input type="checkbox" name="student_is_alive"
-                           class="form-check-input" ${requestScope.studentIsAlive==true ? 'checked' : ''}>
-                    <label class="form-check-label">Is alive</label>
+                    <label>Adres</label>
+                    <input type="text" name="clientAddress" class="form-control"
+                           placeholder="Wprowadź adres" value="${requestScope.clientAddress}">
                 </div>
                 <button type="submit" class="btn btn-primary">Zapisz</button>
                 <%--//lub:

@@ -1,5 +1,6 @@
 <%@ page import="JSP_invoice.model.Invoice" %>
 <%@ page import="java.util.List" %>
+<%@ page import="java.time.format.DateTimeFormatter" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page isELIgnored="false" %>
@@ -19,19 +20,36 @@
         <th>dateOfRelease</th>
         <th>dateOfPayment</th>
         <th>billValue</th>
-        <th>product</th>
+        <th>productList</th>
+        <th>OPIONS</th>
     </tr>
     <%--notacja JSTL --%>
     <c:forEach var="invoice" items="${requestScope.invoice_list_from_controller_InvoiceListServlet}">
         <tr>
             <td>${invoice.getId()}</td>
-            <td>${invoice.getDateOfCreation()}</td>
+            <td>${invoice.getDateOfCreation().format(DateTimeFormatter.ofPattern("YYYY-MM-dd HH:mm"))}</td>
             <td>${invoice.getClientName()}</td>
             <td>${invoice.isIfPaid()}</td>
-            <td>${invoice.getDateOfRelease()}</td>
-            <td>${invoice.getDateOfPayment()}</td>
-            <td>${invoice.getBillValue()}</td>
-            <td>${invoice.getProduct()}</td>
+            <td>
+                <c:if test="${invoice.getDateOfRelease() != null}">
+                    ${invoice.getDateOfRelease()}
+                </c:if>
+            </td>
+            <td>
+                <c:if test="${invoice.getDateOfPayment() != null}">
+                    ${invoice.getDateOfPayment()}
+                </c:if>
+            </td>
+            <td>
+                <c:if test="${invoice.getBillValue() != null}">
+                    ${invoice.getBillValue()}
+                </c:if>
+            </td>
+            <td>
+                <c:if test="${invoice.getProductList() != null}">
+                    ${invoice.getProductList()}
+                </c:if>
+            </td>
             <td>
                 <table>
                     <tr>
