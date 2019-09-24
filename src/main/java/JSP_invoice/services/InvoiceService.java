@@ -20,15 +20,15 @@ public class InvoiceService {
         entityDao.saveOrUpdate(new Invoice(clientName, clientNIP, clientAddress));
     }
 
-    public void removeStudentById(Long invoiceById) {
+    public void removeInvoiceById(Long invoiceById) {
         entityDao.delete(Invoice.class, invoiceById);
     }
 
-    public Optional<Invoice> getStudentById(Long invoiceById) {
+    public Optional<Invoice> getInvoiceById(Long invoiceById) {
         return entityDao.getById(Invoice.class, invoiceById);
     }
 
-    public void update(Invoice studentEdited) {
-        entityDao.saveOrUpdate(studentEdited);
+    public void update(Invoice invoiceEdited) {
+        entityDao.saveOrUpdate(invoiceEdited);
     }
 }

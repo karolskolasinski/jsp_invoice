@@ -29,7 +29,7 @@ public class ProductAddServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
         Long studentIdentifier = Long.parseLong(req.getParameter("invoiceId_to_add_product"));
-        Optional<Invoice> invoiceOptional = invoiceService.getStudentById(studentIdentifier);
+        Optional<Invoice> invoiceOptional = invoiceService.getInvoiceById(studentIdentifier);
         if (invoiceOptional.isPresent()) {
             String name = req.getParameter("name");
             double price = Double.parseDouble(req.getParameter("price"));

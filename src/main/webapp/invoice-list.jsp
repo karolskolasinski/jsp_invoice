@@ -116,7 +116,11 @@
         for (Invoice invoice : invoiceList) {
             out.print("<tr>");
             out.print("<td>" + invoice.getId() + "</td>");
-            out.print("<td>" + invoice.getDateOfCreation().format(DateTimeFormatter.ofPattern("YYYY-MM-dd HH:mm")) + "</td>");
+            if (invoice.getDateOfCreation() != null) {
+                out.print("<td>" + invoice.getDateOfCreation().format(DateTimeFormatter.ofPattern("YYYY-MM-dd HH:mm")) + "</td>");
+            } else {
+                out.print("<td></td>");
+            }
             out.print("<td>" + invoice.getClientName() + "</td>");
             out.print("<td>" + invoice.isIfPaid() + "</td>");
             if (invoice.getDateOfRelease() != null) {

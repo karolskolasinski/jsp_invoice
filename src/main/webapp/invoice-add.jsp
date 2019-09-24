@@ -20,8 +20,8 @@
 <div class="container">
     <div class="row">
         <div class="col-sm">
-            <form action="${requestScope.studentId==null ? '/invoice-add' : '/invoice-edit'}" method="post">
-                <input type="hidden" name="invoice_id" value="${requestScope.invoiceId}">
+            <form action="${requestScope.invoiceId==null ? '/invoice-add' : '/invoice-edit'}" method="post">
+                <input type="hidden" name="invoiceId" value="${requestScope.invoiceId}">
                 <div class="form-group">
                     <label>Imię klienta</label>
                     <input type="text" name="clientName" class="form-control" placeholder="Wprowadź imię"

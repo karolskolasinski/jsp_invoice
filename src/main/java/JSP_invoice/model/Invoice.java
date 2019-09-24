@@ -3,8 +3,9 @@ package JSP_invoice.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.Formula;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -19,7 +20,7 @@ public class Invoice implements IBaseEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @CreationTimestamp
+    @UpdateTimestamp
     @Column()
     private LocalDateTime dateOfCreation;
 
@@ -41,11 +42,19 @@ public class Invoice implements IBaseEntity {
     @Formula(value = "(SELECT SUM(p.price * p.stock) from product p where p.invoice_id = id)")
     private Double billValue;
 
-    @OneToMany(mappedBy = "invoice", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "invoice", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
 //    @JoinColumn(name = "invoice_id")
+    @Cascade(value = org.hibernate.annotations.CascadeType.REMOVE)
     private List<Product> productList;
 
     public Invoice(String clientName, String clientNIP, String clientAddress) {
+        this.clientName = clientName;
+        this.clientNIP = clientNIP;
+        this.clientAddress = clientAddress;
+    }
+
+    public Invoice(Long id, String clientName, String clientNIP, String clientAddress) {
+        this.id = id;
         this.clientName = clientName;
         this.clientNIP = clientNIP;
         this.clientAddress = clientAddress;

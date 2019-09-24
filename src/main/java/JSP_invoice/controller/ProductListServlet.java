@@ -23,7 +23,7 @@ public class ProductListServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         if (req.getParameter("invoiceId") != null) {
             Long invoiceId = Long.parseLong(req.getParameter("invoiceId"));
-            Optional<Invoice> invoiceOptional = invoiceService.getStudentById(invoiceId);
+            Optional<Invoice> invoiceOptional = invoiceService.getInvoiceById(invoiceId);
             if (invoiceOptional.isPresent()) {
                 Invoice invoice = invoiceOptional.get();
                 req.setAttribute("product_list_from_controller_ProductListServlet", invoice.getProductList());
