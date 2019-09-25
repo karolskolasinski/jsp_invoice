@@ -22,9 +22,16 @@ public class InvoiceEditServlet extends HttpServlet {
         String editedClientName = req.getParameter("clientName");
         String editedClientNIP = req.getParameter("clientNIP");
         String editedClientAddress = req.getParameter("clientAddress");
-        Invoice editedInvoice = new Invoice(editedInvoiceId, editedClientName, editedClientNIP, editedClientAddress);
-        invoiceService.updateInvoice(editedInvoice);
-        resp.sendRedirect("/invoice-list");
+
+        Optional<Invoice> invoiceToEdit = invoiceService.getInvoiceById(editedInvoiceId);
+        if (invoiceToEdit.isPresent()) {
+            Invoice invoice = invoiceToEdit.get();
+            invoice.setClientName(editedClientName);
+            invoice.setClientNIP(editedClientNIP);
+            invoice.setClientAddress(editedClientAddress);
+            invoiceService.updateInvoice(invoice);
+            resp.sendRedirect("/invoice-list");
+        }
     }
 
     @Override

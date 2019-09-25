@@ -4,8 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.Formula;
-import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -20,7 +20,7 @@ public class Invoice implements IBaseEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @UpdateTimestamp
+    @CreationTimestamp
     @Column()
     private LocalDateTime dateOfCreation;
 
@@ -58,10 +58,5 @@ public class Invoice implements IBaseEntity {
         this.clientName = editedClientName;
         this.clientNIP = editedClientNIP;
         this.clientAddress = editedClientAddress;
-    }
-
-    public Invoice(Long editedInvoiceId, LocalDateTime editedDateOfRelease) {
-        this.id = editedInvoiceId;
-        this.dateOfRelease = editedDateOfRelease;
     }
 }
