@@ -19,11 +19,11 @@ public class InvoiceEditServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
         Long editedInvoiceId = Long.parseLong(req.getParameter("invoiceId"));
-        String clientName = req.getParameter("clientName");
-        String clientNIP = req.getParameter("clientNIP");
-        String clientAddress = req.getParameter("clientAddress");
-        Invoice invoiceEdited = new Invoice(editedInvoiceId, clientName, clientNIP, clientAddress);
-        invoiceService.update(invoiceEdited);
+        String editedClientName = req.getParameter("clientName");
+        String editedClientNIP = req.getParameter("clientNIP");
+        String editedClientAddress = req.getParameter("clientAddress");
+        Invoice editedInvoice = new Invoice(editedInvoiceId, editedClientName, editedClientNIP, editedClientAddress);
+        invoiceService.updateInvoice(editedInvoice);
         resp.sendRedirect("/invoice-list");
     }
 

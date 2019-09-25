@@ -28,16 +28,20 @@ public class ProductAddServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
-        Long studentIdentifier = Long.parseLong(req.getParameter("invoiceId_to_add_product"));
-        Optional<Invoice> invoiceOptional = invoiceService.getInvoiceById(studentIdentifier);
-        if (invoiceOptional.isPresent()) {
-            String name = req.getParameter("name");
-            double price = Double.parseDouble(req.getParameter("price"));
-            TaxType taxType = TaxType.valueOf(req.getParameter("taxType"));
-            int stock = Integer.parseInt(req.getParameter("stock"));
-            Invoice invoice = invoiceOptional.get();
-            productService.addProduct(name, price, taxType, stock, invoice);
-            resp.sendRedirect("/product-list");
+        Long invoiceIdentifier = Long.parseLong(req.getParameter("invoiceId_to_add_product"));
+        Optional<Invoice> invoiceOptionalToEdit = invoiceService.getInvoiceById(invoiceIdentifier);
+        if (invoiceOptionalToEdit.isPresent()) {
+            if (invoiceOptionalToEdit.get().getDateOfRelease() == null) {
+                String name = req.getParameter("name");
+                double price = Double.parseDouble(req.getParameter("price"));
+                TaxType taxType = TaxType.valueOf(req.getParameter("taxType"));
+                int stock = Integer.parseInt(req.getParameter("stock"));
+                Invoice invoice = invoiceOptionalToEdit.get();
+                productService.addProduct(name, price, taxType, stock, invoice);
+                resp.sendRedirect("/product-list");
+            } else {
+                resp.sendRedirect("/product-list");
+            }
         }
     }
 }

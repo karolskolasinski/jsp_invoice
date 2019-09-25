@@ -53,10 +53,15 @@ public class Invoice implements IBaseEntity {
         this.clientAddress = clientAddress;
     }
 
-    public Invoice(Long id, String clientName, String clientNIP, String clientAddress) {
-        this.id = id;
-        this.clientName = clientName;
-        this.clientNIP = clientNIP;
-        this.clientAddress = clientAddress;
+    public Invoice(Long editedInvoiceId, String editedClientName, String editedClientNIP, String editedClientAddress) {
+        this.id = editedInvoiceId;
+        this.clientName = editedClientName;
+        this.clientNIP = editedClientNIP;
+        this.clientAddress = editedClientAddress;
+    }
+
+    public Invoice(Long editedInvoiceId, LocalDateTime editedDateOfRelease) {
+        this.id = editedInvoiceId;
+        this.dateOfRelease = editedDateOfRelease;
     }
 }

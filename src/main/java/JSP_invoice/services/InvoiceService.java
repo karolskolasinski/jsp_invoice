@@ -28,7 +28,7 @@ public class InvoiceService {
         return entityDao.getById(Invoice.class, invoiceById);
     }
 
-    public void update(Invoice invoiceEdited) {
+    public void updateInvoice(Invoice invoiceEdited) {
         entityDao.saveOrUpdate(invoiceEdited);
     }
 }

@@ -69,7 +69,14 @@
                 <a href="/invoice-edit?invoiceId=${invoice.getId()}">Edit</a>
             </td>
             <td>
-                <a href="/invoice-mark-release?invoiceId=${invoice.getId()}">Mark release</a>
+                <c:choose>
+                    <c:when test="${invoice.getDateOfRelease() == null}">
+                        <a href="/invoice-mark-release?invoiceId=${invoice.getId()}">Mark release</a>
+                    </c:when>
+                    <c:otherwise>
+                        Already marked
+                    </c:otherwise>
+                </c:choose>
             </td>
             <td>
                 <a href="/invoice-mark-paid?invoiceId=${invoice.getId()}">Mark paid</a>
@@ -78,7 +85,14 @@
                 <a href="/product-list?invoiceId=${invoice.getId()}">List products</a>
             </td>
             <td>
-                <a href="/product-add?invoiceId=${invoice.getId()}">Add product</a>
+                <c:choose>
+                    <c:when test="${invoice.getDateOfRelease() == null}">
+                        <a href="/product-add?invoiceId=${invoice.getId()}">Add product</a>
+                    </c:when>
+                    <c:otherwise>
+                        Released
+                    </c:otherwise>
+                </c:choose>
             </td>
         </tr>
     </c:forEach>
@@ -137,10 +151,18 @@
             out.print("<td>" + invoice.getProductList() + "</td>");
             out.println("<td><a href=/invoice-delete?invoiceId=" + invoice.getId() + ">Delete</a></td>");
             out.println("<td><a href=/invoice-edit?invoiceId=" + invoice.getId() + ">Edit</a></td>");
-            out.println("<td><a href=/invoice-mark-release?invoiceId=" + invoice.getId() + ">Mark release</a></td>");
+            if (invoice.getDateOfRelease() == null) {
+                out.println("<td><a href=/invoice-mark-release?invoiceId=" + invoice.getId() + ">Mark release</a></td>");
+            } else {
+                out.print("<td>Already marked</td>");
+            }
             out.println("<td><a href=/invoice-mark-paid?studentId=" + invoice.getId() + ">Mark paid</a></td>");
             out.println("<td><a href=/product-list?studentId=" + invoice.getId() + ">List products</a></td>");
-            out.println("<td><a href=/product-add?invoiceId=" + invoice.getId() + ">Add product</a></td>");
+            if (invoice.getDateOfRelease() == null) {
+                out.println("<td><a href=/product-add?invoiceId=" + invoice.getId() + ">Add product</a></td>");
+            } else {
+                out.print("<td>Released</td>");
+            }
             out.print("</tr>");
         }
     %>
