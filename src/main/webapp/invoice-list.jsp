@@ -79,7 +79,14 @@
                 </c:choose>
             </td>
             <td>
-                <a href="/invoice-mark-paid?invoiceId=${invoice.getId()}">Mark paid</a>
+                <c:choose>
+                    <c:when test="${invoice.getDateOfPayment() == null}">
+                        <a href="/invoice-mark-paid?invoiceId=${invoice.getId()}">Mark paid</a>
+                    </c:when>
+                    <c:otherwise>
+                        Already marked
+                    </c:otherwise>
+                </c:choose>
             </td>
             <td>
                 <a href="/product-list?invoiceId=${invoice.getId()}">List products</a>
@@ -130,39 +137,60 @@
         for (Invoice invoice : invoiceList) {
             out.print("<tr>");
             out.print("<td>" + invoice.getId() + "</td>");
+
+            /*display DateOfCreation*/
             if (invoice.getDateOfCreation() != null) {
                 out.print("<td>" + invoice.getDateOfCreation().format(DateTimeFormatter.ofPattern("YYYY-MM-dd HH:mm")) + "</td>");
             } else {
                 out.print("<td></td>");
             }
+
             out.print("<td>" + invoice.getClientName() + "</td>");
             out.print("<td>" + invoice.isIfPaid() + "</td>");
+
+            /*display DateOfRelease*/
             if (invoice.getDateOfRelease() != null) {
                 out.print("<td>" + invoice.getDateOfRelease().format(DateTimeFormatter.ofPattern("YYYY-MM-dd HH:mm")) + "</td>");
             } else {
                 out.print("<td></td>");
             }
+
+            /*display DateOfPayment*/
             if (invoice.getDateOfPayment() != null) {
                 out.print("<td>" + invoice.getDateOfPayment().format(DateTimeFormatter.ofPattern("YYYY-MM-dd HH:mm")) + "</td>");
             } else {
                 out.print("<td></td>");
             }
+
             out.print("<td>" + invoice.getBillValue() + "</td>");
             out.print("<td>" + invoice.getProductList() + "</td>");
             out.println("<td><a href=/invoice-delete?invoiceId=" + invoice.getId() + ">Delete</a></td>");
             out.println("<td><a href=/invoice-edit?invoiceId=" + invoice.getId() + ">Edit</a></td>");
+
+            /*display mark DateOfRelease option*/
             if (invoice.getDateOfRelease() == null) {
                 out.println("<td><a href=/invoice-mark-release?invoiceId=" + invoice.getId() + ">Mark release</a></td>");
             } else {
                 out.print("<td>Already marked</td>");
             }
-            out.println("<td><a href=/invoice-mark-paid?studentId=" + invoice.getId() + ">Mark paid</a></td>");
-            out.println("<td><a href=/product-list?studentId=" + invoice.getId() + ">List products</a></td>");
+
+            /*display mark DateOfPayment option*/
+            if (invoice.getDateOfPayment() == null) {
+                out.println("<td><a href=/invoice-mark-paid?invoiceId=" + invoice.getId() + ">Mark paid</a></td>");
+            } else {
+                out.print("<td>Already marked</td>");
+
+            }
+
+            out.println("<td><a href=/product-list?invoiceId=" + invoice.getId() + ">List products</a></td>");
+
+            /*display addProduct option*/
             if (invoice.getDateOfRelease() == null) {
                 out.println("<td><a href=/product-add?invoiceId=" + invoice.getId() + ">Add product</a></td>");
             } else {
                 out.print("<td>Released</td>");
             }
+
             out.print("</tr>");
         }
     %>

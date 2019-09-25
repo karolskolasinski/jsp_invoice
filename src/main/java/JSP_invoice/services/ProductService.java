@@ -6,6 +6,7 @@ import JSP_invoice.model.Product;
 import JSP_invoice.model.TaxType;
 
 import java.util.List;
+import java.util.Optional;
 
 public class ProductService {
     private EntityDao entityDao = new EntityDao();
@@ -20,6 +21,14 @@ public class ProductService {
     public void addProduct(String name, double price, TaxType taxType, int stock, Invoice invoice) {
         Product product = new Product(name, price, taxType, stock);
         product.setInvoice(invoice);
+        entityDao.saveOrUpdate(product);
+    }
+
+    public Optional<Product> getProductById(Long productToEditId) {
+        return entityDao.getById(Product.class, productToEditId);
+    }
+
+    public void updateProduct(Product product) {
         entityDao.saveOrUpdate(product);
     }
 }

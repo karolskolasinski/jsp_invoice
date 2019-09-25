@@ -46,7 +46,7 @@ public class InvoiceEditServlet extends HttpServlet {
             req.setAttribute("clientAddress", invoice.getClientAddress());
             req.getRequestDispatcher("invoice-add.jsp").forward(req, resp);
         } else {
-            resp.sendRedirect("invoice-list");
+            resp.sendRedirect("/invoice-list");
         }
     }
 }

@@ -10,7 +10,7 @@
 <%@ page isELIgnored="false" %>
 <html>
 <head>
-    <title>Invoice Add</title>
+    <title>Invoice Add / Edit</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
 <body>

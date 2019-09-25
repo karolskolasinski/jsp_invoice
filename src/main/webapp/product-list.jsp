@@ -30,6 +30,7 @@
                     <th>taxType</th>
                     <th>stock</th>
                     <th>invoice</th>
+                    <th>OPTIONS</th>
                 </tr>
                 <%
                     List<Product> productList = (List<Product>) request.getAttribute("product_list_from_controller_ProductListServlet");
@@ -41,10 +42,19 @@
                         out.println("<td>" + new DecimalFormat("#.##").format(product.getTax()) + "</td>");
                         out.println("<td>" + product.getTaxType() + "</td>");
                         out.println("<td>" + product.getStock() + "</td>");
+
+                        /*display Invoice details*/
                         if (product.getInvoice() != null) {
                             out.println("<td>" + product.getInvoice() + "</td>");
                         } else {
                             out.println("<td></td>");
+                        }
+
+                        /*display editProduct option*/
+                        if (product.getInvoice().getDateOfRelease() == null && product.getInvoice().getDateOfPayment() == null) {
+                            out.println("<td><a href=/product-edit?productId=" + product.getId() + ">Edit</a></td>");
+                        } else {
+                            out.println("<td>Invoice closed</td>");
                         }
                         out.println("</tr>");
                     }

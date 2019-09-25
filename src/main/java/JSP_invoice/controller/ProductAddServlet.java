@@ -31,7 +31,7 @@ public class ProductAddServlet extends HttpServlet {
         Long invoiceIdentifier = Long.parseLong(req.getParameter("invoiceId_to_add_product"));
         Optional<Invoice> invoiceOptionalToEdit = invoiceService.getInvoiceById(invoiceIdentifier);
         if (invoiceOptionalToEdit.isPresent()) {
-            if (invoiceOptionalToEdit.get().getDateOfRelease() == null) {
+            if (invoiceOptionalToEdit.get().getDateOfRelease() == null && invoiceOptionalToEdit.get().getDateOfPayment() == null) {
                 String name = req.getParameter("name");
                 double price = Double.parseDouble(req.getParameter("price"));
                 TaxType taxType = TaxType.valueOf(req.getParameter("taxType"));
