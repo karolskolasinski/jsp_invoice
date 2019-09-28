@@ -23,7 +23,7 @@
     </div>
 </div>
 
-<table class="table table-striped">
+<table class="table table-hover">
     <tr>
         <th>Id.</th>
         <th>dateOfCreation</th>
@@ -32,7 +32,7 @@
         <th>dateOfRelease</th>
         <th>dateOfPayment</th>
         <th>billValue</th>
-        <th>productList</th>
+        <th style="width: 22%">productList</th>
         <th colspan="6">OPIONS</th>
     </tr>
     <%--notacja JSTL --%>
@@ -63,41 +63,45 @@
                 </c:if>
             </td>
             <td>
-                <a href="/invoice-delete?invoiceId=${invoice.getId()}">Delete</a>
+                <a class="btn btn-outline-danger" role="button" href="/invoice-delete?invoiceId=${invoice.getId()}">Delete</a>
             </td>
             <td>
-                <a href="/invoice-edit?invoiceId=${invoice.getId()}">Edit</a>
+                <a class="btn btn-outline-success" role="button" href="/invoice-edit?invoiceId=${invoice.getId()}">Edit</a>
             </td>
             <td>
                 <c:choose>
                     <c:when test="${invoice.getDateOfRelease() == null}">
-                        <a href="/invoice-mark-release?invoiceId=${invoice.getId()}">Mark release</a>
+                        <a class="btn btn-outline-warning" role="button"
+                           href="/invoice-mark-release?invoiceId=${invoice.getId()}">Mark release</a>
                     </c:when>
                     <c:otherwise>
-                        Already marked
+                        <a class="btn btn-outline-warning disabled" role="button">Marked</a>
                     </c:otherwise>
                 </c:choose>
             </td>
             <td>
                 <c:choose>
                     <c:when test="${invoice.getDateOfPayment() == null}">
-                        <a href="/invoice-mark-paid?invoiceId=${invoice.getId()}">Mark paid</a>
+                        <a class="btn btn-outline-warning" role="button" href="/invoice-mark-paid?invoiceId=${invoice.getId()}">Mark
+                            paid</a>
                     </c:when>
                     <c:otherwise>
-                        Already marked
+                        <a class="btn btn-outline-warning disabled" role="button">Marked</a>
                     </c:otherwise>
                 </c:choose>
             </td>
             <td>
-                <a href="/product-list?invoiceId=${invoice.getId()}">List products</a>
+                <a class="btn btn-outline-info" role="button" href="/product-list?invoiceId=${invoice.getId()}">List
+                    products</a>
             </td>
             <td>
                 <c:choose>
                     <c:when test="${invoice.getDateOfRelease() == null}">
-                        <a href="/product-add?invoiceId=${invoice.getId()}">Add product</a>
+                        <a class="btn btn-outline-success" role="button" href="/product-add?invoiceId=${invoice.getId()}">Add
+                            product</a>
                     </c:when>
                     <c:otherwise>
-                        Released
+                        <a class="btn btn-outline-success disabled" role="button">Released</a>
                     </c:otherwise>
                 </c:choose>
             </td>
@@ -128,7 +132,7 @@
         <th>dateOfRelease</th>
         <th>dateOfPayment</th>
         <th>billValue</th>
-        <th>productList</th>
+        <th style="width: 22%">productList</th>
         <th colspan="6">OPIONS</th>
     </tr>
     <%--notacja java JSP --%>
@@ -164,31 +168,31 @@
 
             out.print("<td>" + invoice.getBillValue() + "</td>");
             out.print("<td>" + invoice.getProductList() + "</td>");
-            out.println("<td><a href=/invoice-delete?invoiceId=" + invoice.getId() + ">Delete</a></td>");
-            out.println("<td><a href=/invoice-edit?invoiceId=" + invoice.getId() + ">Edit</a></td>");
+            out.println("<td><a class=\"btn btn-outline-danger\" role=\"button\" href=\"/invoice-delete?invoiceId=" + invoice.getId() + "\">Delete</a></td>");
+            out.println("<td><a class=\"btn btn-outline-success\" role=\"button\"href=\"/invoice-edit?invoiceId=" + invoice.getId() + "\">Edit</a></td>");
 
             /*display mark DateOfRelease option*/
             if (invoice.getDateOfRelease() == null) {
-                out.println("<td><a href=/invoice-mark-release?invoiceId=" + invoice.getId() + ">Mark release</a></td>");
+                out.println("<td><a class=\"btn btn-outline-warning\" role=\"button\" href=\"/invoice-mark-release?invoiceId=" + invoice.getId() + "\">Mark release</a></td>");
             } else {
-                out.print("<td>Already marked</td>");
+                out.print("<td><a class=\"btn btn-outline-warning disabled\" role=\"button\">Marked</a></td>");
             }
 
             /*display mark DateOfPayment option*/
             if (invoice.getDateOfPayment() == null) {
-                out.println("<td><a href=/invoice-mark-paid?invoiceId=" + invoice.getId() + ">Mark paid</a></td>");
+                out.println("<td><a class=\"btn btn-outline-warning\" role=\"button\" href=\"/invoice-mark-paid?invoiceId=" + invoice.getId() + "\">Mark paid</a></td>");
             } else {
-                out.print("<td>Already marked</td>");
+                out.print("<td><a class=\"btn btn-outline-warning disabled\" role=\"button\">Marked</a></td>");
 
             }
 
-            out.println("<td><a href=/product-list?invoiceId=" + invoice.getId() + ">List products</a></td>");
+            out.println("<td><a class=\"btn btn-outline-info\" role=\"button\" href=\"/product-list?invoiceId=" + invoice.getId() + "\">List products</a></td>");
 
             /*display addProduct option*/
             if (invoice.getDateOfRelease() == null) {
-                out.println("<td><a href=/product-add?invoiceId=" + invoice.getId() + ">Add product</a></td>");
+                out.println("<td><a class=\"btn btn-outline-success\" role=\"button\" href=\"/product-add?invoiceId=" + invoice.getId() + "\">Add product</a></td>");
             } else {
-                out.print("<td>Released</td>");
+                out.print("<td><a class=\"btn btn-outline-success disabled\" role=\"button\">Released</a></td>");
             }
 
             out.print("</tr>");

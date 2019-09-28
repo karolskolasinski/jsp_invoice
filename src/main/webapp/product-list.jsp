@@ -45,16 +45,16 @@
 
                         /*display Invoice details*/
                         if (product.getInvoice() != null) {
-                            out.println("<td>" + product.getInvoice() + "</td>");
+                            out.println("<td >" + product.getInvoice() + "</td>");
                         } else {
                             out.println("<td></td>");
                         }
 
                         /*display editProduct option*/
                         if (product.getInvoice().getDateOfRelease() == null && product.getInvoice().getDateOfPayment() == null) {
-                            out.println("<td><a href=/product-edit?productId=" + product.getId() + ">Edit</a></td>");
+                            out.println("<td><a class=\"btn btn-outline-success\" role=\"button\" href=\"/product-edit?productId=" + product.getId() + "\">Edit</a></td>");
                         } else {
-                            out.println("<td>Invoice closed</td>");
+                            out.println("<td><a class=\"btn btn-outline-success disabled\" role=\"button\">Closed</a></td>");
                         }
                         out.println("</tr>");
                     }
