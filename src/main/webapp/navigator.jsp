@@ -16,12 +16,6 @@
             <a class="nav-link active" href="/invoice-add">Add Invoice</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link active" href="/client-list">List Client</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link active" href="/client-add">Add Client</a>
-        </li>
-        <li class="nav-item">
             <a class="nav-link active" href="/product-list">List Product</a>
         </li>
     </ul>
