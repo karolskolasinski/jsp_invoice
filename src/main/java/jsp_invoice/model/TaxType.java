@@ -1,4 +1,4 @@
-package JSP_invoice.model;
+package jsp_invoice.model;
 
 public enum TaxType {
     PRODUCT,

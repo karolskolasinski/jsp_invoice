@@ -1,6 +1,6 @@
-package JSP_invoice.database;
+package jsp_invoice.database;
 
-import JSP_invoice.model.IBaseEntity;
+import jsp_invoice.model.IBaseEntity;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

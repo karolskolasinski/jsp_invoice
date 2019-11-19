@@ -20,8 +20,8 @@
         <property name="hbm2ddl.auto">update</property>
         <property name="show_sql">true</property>
 
-        <mapping class="JSP_invoice.model.Invoice"/>
-        <!--<mapping class="JSP_invoice.model.Client"/>-->
-        <mapping class="JSP_invoice.model.Product"/>
+        <mapping class="jsp_invoice.model.Invoice"/>
+        <!--<mapping class="jsp_invoice.model.Client"/>-->
+        <mapping class="jsp_invoice.model.Product"/>
     </session-factory>
 </hibernate-configuration>

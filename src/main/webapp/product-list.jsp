@@ -1,5 +1,5 @@
 <%@ page import="java.util.List" %>
-<%@ page import="JSP_invoice.model.Product" %>
+<%@ page import="jsp_invoice.model.Product" %>
 <%@ page import="java.text.DecimalFormat" %>
 <%--
   Created by IntelliJ IDEA.

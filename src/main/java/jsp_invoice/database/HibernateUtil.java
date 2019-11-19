@@ -1,4 +1,4 @@
-package JSP_invoice.database;
+package jsp_invoice.database;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;

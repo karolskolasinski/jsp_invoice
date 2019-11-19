@@ -1,5 +1,5 @@
 <%@ page import="java.time.format.DateTimeFormatter" %>
-<%@ page import="JSP_invoice.model.Invoice" %>
+<%@ page import="jsp_invoice.model.Invoice" %>
 <%@ page import="java.util.List" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>

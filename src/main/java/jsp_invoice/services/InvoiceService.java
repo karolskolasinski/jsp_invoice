@@ -1,7 +1,7 @@
-package JSP_invoice.services;
+package jsp_invoice.services;
 
-import JSP_invoice.database.EntityDao;
-import JSP_invoice.model.Invoice;
+import jsp_invoice.database.EntityDao;
+import jsp_invoice.model.Invoice;
 
 import java.util.List;
 import java.util.Optional;

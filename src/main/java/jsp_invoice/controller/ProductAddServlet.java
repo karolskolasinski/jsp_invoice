@@ -1,9 +1,9 @@
-package JSP_invoice.controller;
+package jsp_invoice.controller;
 
-import JSP_invoice.model.Invoice;
-import JSP_invoice.model.TaxType;
-import JSP_invoice.services.InvoiceService;
-import JSP_invoice.services.ProductService;
+import jsp_invoice.model.Invoice;
+import jsp_invoice.model.TaxType;
+import jsp_invoice.services.InvoiceService;
+import jsp_invoice.services.ProductService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
